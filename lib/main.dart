@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import 'locators.dart';
+import 'services/user_data_service.dart';
 import 'views/home.dart';
 
 void main() {
@@ -8,8 +11,19 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   ///Set preferred orientation to portrait
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  setupLocators();
 
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      /// List of provider, the UI updates when `notifyListeners()` is called
+      /// on the service classes
+      /// learn more: https://pub.dev/packages/provider
+      providers: [
+        ChangeNotifierProvider(create: (_) => locator<UserDataService>()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
