@@ -16,7 +16,7 @@ class UserDataService extends ChangeNotifier{
     _isLoading = true;
     notifyListeners();
 
-    final result = await http.get(userUrl).catchError((e) {
+    final result = await http.get(Uri.parse(userUrl)).catchError((e) {
       print('Error Fetching Users');
     });
 
