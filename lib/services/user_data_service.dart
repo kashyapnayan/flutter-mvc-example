@@ -10,9 +10,9 @@ class UserDataService extends ChangeNotifier{
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  List<User> users = [];
+  List<Data> users = [];
 
-  Future<List<User>> fetchUsers() async {
+  Future<List<Data>> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
 
@@ -21,14 +21,10 @@ class UserDataService extends ChangeNotifier{
     });
 
     if(result.statusCode == 200){
-      Map<String, dynamic> data;
-      data = json.decode(result.body);
+      Map<String, dynamic> data = json.decode(result.body);
       var _users = data["data"];
       if (_users != null) {
-        for (var user in _users) {
-          print(user);
-          users.add(User.fromMap(user));
-        }
+        users = User.fromJson(data).data;
       }
       _isLoading = false;
       notifyListeners();

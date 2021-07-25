@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<User> users = Provider.of<UserDataService>(context).users;
+    List<Data> users = Provider.of<UserDataService>(context).users;
     bool isLoading = Provider.of<UserDataService>(context).isLoading;
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                   child: ListTile(
                     leading: Image.network(users[index].avatar),
                     title: Text(
-                      users[index].first_name + " " + users[index].last_name,
+                      users[index].firstName + " " + users[index].lastName,
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
