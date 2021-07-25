@@ -1,10 +1,10 @@
 class User {
-  int page;
-  int perPage;
-  int total;
-  int totalPages;
-  List<Data> data;
-  Support support;
+  int? page;
+  int? perPage;
+  int? total;
+  int? totalPages;
+  List<Data>? data;
+  Support? support;
 
   User(
       {this.page,
@@ -22,7 +22,7 @@ class User {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
     support =
@@ -36,21 +36,21 @@ class User {
     data['total'] = this.total;
     data['total_pages'] = this.totalPages;
     if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     if (this.support != null) {
-      data['support'] = this.support.toJson();
+      data['support'] = this.support!.toJson();
     }
     return data;
   }
 }
 
 class Data {
-  int id;
-  String email;
-  String firstName;
-  String lastName;
-  String avatar;
+  int? id;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? avatar;
 
   Data({this.id, this.email, this.firstName, this.lastName, this.avatar});
 
@@ -74,8 +74,8 @@ class Data {
 }
 
 class Support {
-  String url;
-  String text;
+  String? url;
+  String? text;
 
   Support({this.url, this.text});
 

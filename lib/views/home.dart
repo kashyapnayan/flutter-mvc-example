@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Data> users = Provider.of<UserDataService>(context).users;
+    List<Data>? users = Provider.of<UserDataService>(context).users;
     bool isLoading = Provider.of<UserDataService>(context).isLoading;
     return Scaffold(
       appBar: AppBar(
@@ -31,21 +31,21 @@ class _HomeState extends State<Home> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: users.length,
+              itemCount: users!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   elevation: 5,
                   child: ListTile(
-                    leading: Image.network(users[index].avatar),
+                    leading: Image.network(users[index].avatar!),
                     title: Text(
-                      users[index].firstName + " " + users[index].lastName,
+                      users[index].firstName! + " " + users[index].lastName!,
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87),
                     ),
                     subtitle: Text(
-                      users[index].email,
+                      users[index].email!,
                       style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                     trailing: Text('ID: ' + users[index].id.toString()),

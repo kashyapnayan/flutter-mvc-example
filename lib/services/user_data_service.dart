@@ -10,9 +10,9 @@ class UserDataService extends ChangeNotifier{
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  List<Data> users = [];
+  List<Data>? users = [];
 
-  Future<List<Data>> fetchUsers() async {
+  Future<List<Data>?> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
 
